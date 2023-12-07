@@ -100,7 +100,7 @@ namespace CodeFive
     "Company A",
     "Vendor B",
     "Enterprise C",
-    // Add more vendor names here...
+    
 };
 
         private void SearchButton_Click(object sender, EventArgs e)
@@ -125,9 +125,8 @@ namespace CodeFive
 
         private string GetUserInput()
         {
-            // This should be replaced with the actual method of obtaining user input
-            // For example, you could use a simple InputBox or a form with a TextBox control
-            return "Test"; // Replace this with actual input from the user
+            
+            return "Test"; 
         }
 
         private void UploadPdfButton_Click(object sender, EventArgs e)
