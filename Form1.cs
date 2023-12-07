@@ -53,9 +53,131 @@ namespace CodeFive
             ResumeLayout(false);
         }
 
+
+
+
+
+
+
+
+
         private void button1_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+
+        private void OpenPdfButton_Click(object sender, EventArgs e)
+        {
+            // Code to open a PDF file
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "PDF Files (*.pdf)|*.pdf"; // Filter to only show PDF files
+            openFileDialog.Title = "Open PDF File";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = openFileDialog.FileName;
+
+                try
+                {
+                    // Open the PDF file with the default PDF reader
+                    System.Diagnostics.Process.Start(filePath);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while opening the file: " + ex.Message);
+                }
+            }
+        }
+
+        private List<string> vendorNames = new List<string>
+{
+    "Company A",
+    "Vendor B",
+    "Enterprise C",
+    // Add more vendor names here...
+};
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            // Code for the search functionality
+            string searchTerm = GetUserInput().ToLower();
+
+            // Search the vendor list for names that contain the search term
+            var searchResults = vendorNames.Where(vendor => vendor.ToLower().Contains(searchTerm)).ToList();
+
+            // If there are results, join them into a single string to show in the MessageBox
+            if (searchResults.Any())
+            {
+                string resultString = string.Join(Environment.NewLine, searchResults);
+                MessageBox.Show("Search results:\n" + resultString);
+            }
+            else
+            {
+                MessageBox.Show("No results found.");
+            }
+        }
+
+        private string GetUserInput()
+        {
+            // This should be replaced with the actual method of obtaining user input
+            // For example, you could use a simple InputBox or a form with a TextBox control
+            return "Test"; // Replace this with actual input from the user
+        }
+
+        private void UploadPdfButton_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf"; // Set the file type to PDF
+            saveFileDialog.DefaultExt = "pdf"; 
+            saveFileDialog.AddExtension = true; // Ensure the file extension is added
+
+            // for checking  if the user clicked the save button
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                
+                string filePath = saveFileDialog.FileName;
+
+                // Here will  save the file. it will  just show the file path
+                MessageBox.Show("Save file at: " + filePath);
+
+               
+            }
+        }
+
+        private void ExportReportButton_Click(object sender, EventArgs e)
+        {
+            // Code to export a report
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Text Files (*.txt)|*.txt"; // Change this if you need a different format
+            saveFileDialog.DefaultExt = "txt";
+            saveFileDialog.AddExtension = true;
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Generates  report data here. 
+                string reportData = "This is an example report content.";
+
+                try
+                {
+                    File.WriteAllText(saveFileDialog.FileName, reportData);
+                    MessageBox.Show("Report exported successfully to " + saveFileDialog.FileName);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while exporting the report: " + ex.Message);
+                }
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
