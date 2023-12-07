@@ -1,3 +1,9 @@
+using System;
+using System.Windows.Forms;
+using System.Drawing;
+using System.IO;
+using System.Net;
+
 namespace CodeFive
 {
     public partial class Form1 : Form
@@ -15,6 +21,13 @@ namespace CodeFive
             openPdfButton.Click += new EventHandler(OpenPdfButton_Click);
             this.Controls.Add(openPdfButton);
 
+            // Button for searching
+            Button searchButton = new Button();
+            searchButton.Text = "Search";
+            searchButton.Location = new System.Drawing.Point(133, 174); // Adjust position as needed
+            searchButton.Size = new System.Drawing.Size(280, 160); // Adjust size as needed
+            searchButton.Click += new EventHandler(SearchButton_Click);
+            this.Controls.Add(searchButton);
         }
 
         private void button1_Click(object sender, EventArgs e)
